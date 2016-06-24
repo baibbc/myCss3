@@ -1,0 +1,62 @@
+//Example: @include prefixer(border-radius, $radius, webkit spec);
+//----------------------------------------
+$prefix-for-webkit: true !default;
+$prefix-for-mozilla: true !default;
+$prefix-for-microsoft: true !default;
+$prefix-for-opera: true !default;
+$prefix-for-spec: true !default;
+
+//浏览器前缀
+@mixin prefixer ($property, $value, $prefixes: webkit moz o ms spec) {
+  @each $prefix in $prefixes {
+
+    @if $prefix == webkit and $prefix-for-webkit == true {
+      -webkit-#{$property}: $value;
+    }
+    @else if $prefix == moz and $prefix-for-mozilla == true {
+      -moz-#{$property}: $value;
+    }
+    @else if $prefix == ms and $prefix-for-microsoft == true {
+      -ms-#{$property}: $value;
+    }
+    @else if $prefix == o and $prefix-for-opera == true {
+      -o-#{$property}: $value;
+    }
+    @else if $prefix == spec and $prefix-for-spec == true {
+      #{$property}: $value;
+    }
+    @else {
+      @warn "Unrecognized prefix: #{$prefix}";
+    }
+  }
+}
+
+
+//动画keyframes
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    $b: '-webkit-' !global;
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    $b: '-moz-' !global;
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    $b: '-ms-' !global;
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    $b: '-o-' !global;
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    $b: '' !global;
+    @content;
+  }
+}
+
+//@mixin skewX($degrees) {
+//  @include prefixer(transform, skewX($degrees), webkit moz o ms spec);
+//  -webkit-backface-visibility: hidden;
+//}

@@ -1,0 +1,42 @@
+$browser-default-font-size: 16px !default;//变量的值可以根据自己需求定义
+
+
+// nav bgColor
+$nav-color: #000;
+$nav-hover-color: #fff000;
+$nav-selected-color: #ff0000;
+
+//section bgColor
+$section-title-color: #bb505d;
+
+//配色方案
+//lighten(#cc3, 10%) // #d6d65c
+//darken(#cc3, 10%) // #a3a329
+//grayscale(#cc3) // #808080
+//complement(#cc3) // #33c
+
+//清除浮动
+/*%clearfix {
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}*/
+%clearfix {
+  &{
+    *zoom: 1;
+  }
+  &:before,
+  &:after{
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,444 @@
+@import "compass/reset";
+@import "define";
+@import "mixins";
+@import "animation";
+html {
+  font-size:$browser-default-font-size;
+  @include prefixer('font-smoothing', antialiased);
+}
+
+@media screen and (min-width:375px) and (max-width:639px) {
+  html {
+    font-size: 17px
+  }
+}
+
+@media screen and (min-width:640px) and (max-width:719px) {
+  html {
+    font-size: 18px
+  }
+}
+
+@media screen and (min-width:720px) and (max-width:749px) {
+  html {
+    font-size: 19px
+  }
+}
+
+@media screen and (min-width:750px) and (max-width:799px) {
+  html {
+    font-size: 20px
+  }
+}
+
+@media screen and (min-width:800px) and (max-width:959px) {
+  html {
+    font-size: 21px
+  }
+}
+
+@media screen and (min-width:960px) and (max-width:1079px) {
+  html {
+    font-size: 22px
+  }
+}
+
+@media screen and (min-width:1080px) {
+  html {
+    font-size: 23px
+  }
+}
+
+a{text-decoration:none;}
+
+.main-container{
+  position:absolute;
+  width:100%;
+  height:100%;
+  left:0;
+  top:0;
+}
+//底部导航
+.st-container{
+  width:100%;
+  height:100%;
+  font-size:pxTorem(14px);
+  overflow:hidden;
+  %navChildrenExtend{
+    width:20%;
+    position:absolute;
+    height:pxTorem(34px);
+    line-height:pxTorem(34px);
+    padding:0;
+    margin:0;
+    bottom:0;
+  }
+  > input{
+    @extend %navChildrenExtend;
+    opacity:0;
+    z-index:999;
+    &:checked{
+      + a{
+        //@include prefixer("transition", background .4s ease-in-out);
+        background:$nav-selected-color;
+        &:after{
+          content:"";
+          width:0;
+          height:0;
+          position:absolute;
+          bottom:100%;
+          left:50%;
+          border:pxTorem(10px) solid transparent;
+          border-bottom-color:$nav-selected-color;
+          margin-left:pxTorem(-10px);
+        }
+      }
+      &:hover{
+        + a{
+          color:#fff;
+          background:$nav-selected-color;
+        }
+      }
+    }
+    &:hover{
+      + a{
+        color:rgba(0,0,0,.8);
+        background-color:$nav-hover-color;
+        //background-color:#bb505d;
+      }
+    }
+  }
+  > a{
+    @extend %navChildrenExtend;
+    z-index:998;
+    text-align:center;
+    color:#fff;
+    background:$nav-color;
+  }
+}
+@include keyframes(moveDown){
+  from{
+    opacity:0;
+    #{$b}transform:translateY(pxTorem(-30px));
+  }
+  to{
+    opacity:1;
+    #{$b}transform:translateY(pxTorem(0px));
+  }
+}
+
+@include keyframes(moveUp){
+  from{
+    opacity:0;
+    #{$b}transform: translateY(pxTorem(30px));
+  }
+  to{
+    opacity:1;
+    #{$b}transform: translateY(0);
+  }
+}
+/*@-webkit-keyframes moveDown{
+  from{
+    opacity:0;
+    //@include prefixer("transform", translateY(pxTorem(-30px)));
+    //-webkit-transform:translateY(pxTorem(-30px));
+    @include prefixer("transform", translateY(pxTorem(-30px)), webkit);
+  }
+  to{
+    opacity:1;
+    //@include prefixer("transform", translateY(pxTorem(0px)));
+    //-webkit-transform:translateY(pxTorem(0px));
+    @include prefixer("transform", translateY(pxTorem(0px)), webkit);
+  }
+}
+@-moz-keyframes moveDown{
+  from{
+    opacity:0;
+    @include prefixer("transform", translateY(pxTorem(-30px)), moz);
+    //-moz-transform:translateY(pxTorem(-30px));
+  }
+  to{
+    opacity:1;
+    @include prefixer("transform", translateY(pxTorem(0px)), moz);
+    //-moz-transform:translateY(pxTorem(0px));
+  }
+}
+@-ms-keyframes moveDown{
+  from{
+    opacity:0;
+    @include prefixer("transform", translateY(pxTorem(-30px)), ms);
+    //-ms-transform:translateY(pxTorem(-30px));
+  }
+  to{
+    opacity:1;
+    @include prefixer("transform", translateY(pxTorem(0px)), ms);
+    //-ms-transform:translateY(pxTorem(0px));
+  }
+}
+@-o-keyframes moveDown{
+  from{
+    opacity:0;
+    @include prefixer("transform", translateY(pxTorem(-30px)), o);
+    //-o-transform:translateY(pxTorem(-30px));
+  }
+  to{
+    opacity:1;
+    @include prefixer("transform", translateY(pxTorem(0px)), o);
+    //-o-transform:translateY(pxTorem(0px));
+  }
+}
+@keyframes moveDown{
+  from{
+    opacity:0;
+    @include prefixer("transform", translateY(pxTorem(-30px)), spec);
+    //transform:translateY(pxTorem(-30px));
+  }
+  to{
+    opacity:1;
+    @include prefixer("transform", translateY(pxTorem(0px)), spec);
+    //transform:translateY(pxTorem(0px));
+  }
+}*/
+
+/*@-webkit-keyframes moveUp{
+  from{
+    opacity:0;
+    @include prefixer("transform", translateY(pxTorem(30px)), webkit);
+    //-webkit-transform:translateY(pxTorem(30px));
+  }
+  to{
+    opacity:1;
+    @include prefixer("transform", translateY(pxTorem(0px)), webkit);
+    //-webkit-transform:translateY(pxTorem(0px));
+  }
+}
+@-moz-keyframes moveUp{
+  from{
+    opacity:0;
+    @include prefixer("transform", translateY(pxTorem(30px)), moz);
+    //-moz-transform:translateY(pxTorem(30px));
+  }
+  to{
+    opacity:1;
+    @include prefixer("transform", translateY(pxTorem(0px)), moz);
+    //-moz-transform:translateY(pxTorem(0px));
+  }
+}
+@-ms-keyframes moveUp{
+  from{
+    opacity:0;
+    @include prefixer("transform", translateY(pxTorem(30px)), ms);
+    //-ms-transform:translateY(pxTorem(30px));
+  }
+  to{
+    opacity:1;
+    @include prefixer("transform", translateY(pxTorem(0px)), ms);
+    //-ms-transform:translateY(pxTorem(0px));
+  }
+}
+@-o-keyframes moveUp{
+  from{
+    opacity:0;
+    @include prefixer("transform", translateY(pxTorem(30px)), o);
+    //-o-transform:translateY(pxTorem(30px));
+  }
+  to{
+    opacity:1;
+    @include prefixer("transform", translateY(pxTorem(0px)), o);
+    //-o-transform:translateY(pxTorem(0px));
+  }
+}
+@keyframes moveUp{
+  from{
+    opacity:0;
+    @include prefixer("transform", translateY(pxTorem(30px)), spec);
+    //transform:translateY(pxTorem(30px));
+  }
+  to{
+    opacity:1;
+    @include prefixer("transform", translateY(pxTorem(0px)), spec);
+    //transform:translateY(pxTorem(0px));
+  }
+}*/
+
+//底部按钮定位
+%animationH2{
+  @include prefixer("animation", moveDown 0.6s ease-in-out 0.6s backwards);
+}
+%animationP{
+  @include prefixer("animation", moveUp 0.6s ease-in-out 0.6s backwards);
+}
+%control1{
+  left:0%;
+}
+#control-1{
+  @extend %control1;
+  + a{
+    @extend %control1;
+  }
+  //切换页面
+  &:checked{
+    ~ .scroll-container{
+      @include prefixer("transform", translateY(0%));
+      #tab-panel-1 h2{
+        @extend %animationH2;
+      };
+      #tab-panel-1 p{
+        @extend %animationP;
+      };
+    }
+  }
+}
+%control2{
+  left:20%;
+}
+#control-2{
+  @extend %control2;
+  + a{
+    @extend %control2;
+  };
+  //切换页面
+  &:checked{
+    ~ .scroll-container{
+      @include prefixer("transform", translateY(-100%));
+      #tab-panel-2 h2{
+        @extend %animationH2;
+      }
+      #tab-panel-2 p{
+        @extend %animationP;
+      }
+    }
+  }
+}
+%control3{
+  left:40%;
+}
+#control-3{
+  @extend %control3;
+  + a{
+    @extend %control3;
+  };
+  //切换页面
+  &:checked{
+    ~ .scroll-container{
+      @include prefixer("transform", translateY(-200%));
+      #tab-panel-3 h2{
+        @extend %animationH2;
+      }
+      #tab-panel-3 p{
+        @extend %animationP;
+      }
+    }
+  }
+}
+%control4{
+  left:60%;
+}
+#control-4{
+  @extend %control4;
+  + a{
+    @extend %control4;
+  };
+  //切换页面
+  &:checked{
+    ~ .scroll-container{
+      @include prefixer("transform", translateY(-300%));
+      #tab-panel-4 h2{
+        @extend %animationH2;
+      }
+      #tab-panel-4 p{
+        @extend %animationP;
+      }
+    }
+  }
+}
+%control5{
+  left:80%;
+}
+#control-5{
+  @extend %control5;
+  + a{
+    @extend %control5;
+  }
+  //切换页面
+  &:checked{
+    ~ .scroll-container{
+      @include prefixer("transform", translateY(-400%));
+      #tab-panel-5 h2{
+        @extend %animationH2;
+      }
+      #tab-panel-5 p{
+        @extend %animationP;
+      }
+    }
+  }
+}
+
+//主内容
+%scrollExtend{
+  position:relative;
+  width:100%;
+  height:100%;
+  z-index:9;
+};
+%sTit{
+  position:absolute;
+  top:0;
+  left:50%;
+  width:pxTorem(150px);
+  height:pxTorem(150px);
+  line-height:pxTorem(150px);
+  margin-left:pxTorem(-75px);
+};
+.scroll-container{
+  @extend %scrollExtend;
+  @include prefixer("transform", translate3d(0, 0, 0));
+  @include prefixer("backface-visiblity", hidden);
+  @include prefixer("transition", all .6s ease-in-out);
+  @at-root{
+    section{
+      @extend %scrollExtend;
+      overflow:hidden;
+      .section-title{
+        @extend %sTit;
+        //background:$section-title-color;
+        //box-shadow:-4px -4px 16px lighten(#000, 20%);
+        background:lighten($section-title-color, 20%);
+        @include prefixer("transform", translateY(pxTorem(-75px)) rotate(45deg));
+      }
+      &:nth-child(2n+1){
+        background:lighten($section-title-color, 20%);
+        .section-title{
+          background:#fff;
+          &:after{
+            color:rgba(0, 0, 0, .8);
+          }
+        }
+        h2, p{
+          color:#fff;
+        }
+      }
+      h2, p{
+        padding:0 10%;
+        text-align:center;
+      }
+      p{
+        line-height:160%;
+      }
+      h2{
+        font-size:pxTorem(40px);
+        margin-top:pxTorem(150px);
+        margin-bottom:pxTorem(20px);
+        //@include prefixer("transform", translateY(pxTorem(0px)));
+      }
+    }
+  }
+}
+[data-icon]:after{
+  @extend %sTit;
+  content:attr(data-icon);
+  color:#fff;
+  font-size:48px;
+  text-align:center;
+  @include prefixer("transform", rotate(-45deg) translateY(pxTorem(45px)));
+}
